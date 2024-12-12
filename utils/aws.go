@@ -46,8 +46,7 @@ func GetHost(hostedZoneId string) string {
 	if e != nil {
 		log.Fatal("Cannot get Host ", e)
 	}
-	result := *rs.HostedZone.Name
-	return result
+	return *rs.HostedZone.Name
 }
 
 func SetHost(hostedZoneId, ip string, subs []string) {

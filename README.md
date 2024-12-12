@@ -6,4 +6,5 @@ These environment variables is required for this script work:
 - `INSTANCE_ID`: Instance ID
 - `HOSTEDZONE_ID`: HostedZone ID
 - `SUBDOMAINS`: the list of subdomain you want to update, split by commas `,` .e.g: `"abc,def,gxh"`
+- `REGION_ID`: the region where your EC2 instance is running.
   

@@ -16,7 +16,8 @@ var r53Client *route53.Client
 
 func init() {
 	// Load the Shared AWS Configuration (~/.aws/config)
-	cfg, err := config.LoadDefaultConfig(context.TODO(), config.WithRegion("ap-southeast-1"))
+	region := strings.TrimSpace(os.Getenv("REGION_ID"))
+	cfg, err := config.LoadDefaultConfig(context.TODO(), config.WithRegion(region))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -35,9 +36,7 @@ func GetEc2Ip(iId string) string {
 	}
 	count := len(result.Reservations)
 	fmt.Println("Instances: ", count)
-	publicIp := *result.Reservations[0].Instances[0].NetworkInterfaces[0].PrivateIpAddresses[0].Association.PublicIp
-	fmt.Println("Public IP is: ", publicIp)
-	return publicIp
+	return *result.Reservations[0].Instances[0].NetworkInterfaces[0].PrivateIpAddresses[0].Association.PublicIp
 }
 
 func GetHost(hostedZoneId string) string {
